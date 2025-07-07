@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "chat-control",
+  "version": "${version}",
+  "name": "Chat Control",
+  "description": "A Minecraft mod that allows more customization of the chat experience.",
+  "authors": [
+    "Samuel Willows"
+  ],
+
+  "contact": {
+
+  },
+
+  "license": "MIT",
+  "icon": "assets/chatcontrol/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "dev.seasnail1.chatcontrol.ChatControl"
+    ],
+    "modmenu": [
+      "dev.seasnail1.chatcontrol.ModMenuIntegration"
+    ]
+  },
+    "mixins": [
+        "chatcontrol.mixins.json"
+    ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
