@@ -50,9 +50,7 @@ public class Config {
                         suffixText = (String) entry.getValue();
                         break;
                 }
-                System.out.println(entry.getKey() + "=" + entry.getValue());
             }
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }

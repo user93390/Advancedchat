@@ -4,7 +4,6 @@ import dev.seasnail1.chatcontrol.config.Config;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.s2c.play.ChatMessageS2CPacket;
-import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

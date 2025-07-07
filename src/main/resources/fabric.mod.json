@@ -9,7 +9,9 @@
   ],
 
   "contact": {
-
+    "issues": "github.com/user93390/chat-control/issues",
+    "source": "github.com/user93390/chat-control",
+    "homepage": "github.com/user93390/chat-control"
   },
 
   "license": "MIT",
@@ -23,12 +25,20 @@
       "dev.seasnail1.chatcontrol.ModMenuIntegration"
     ]
   },
-    "mixins": [
-        "chatcontrol.mixins.json"
-    ],
+  "mixins": [
+    "chatcontrol.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.issues": "github.com/user93390/chat-control/issues",
+        "modmenu.source": "github.com/user93390/chat-control"
+      }
+    }
   }
 }
