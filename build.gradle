@@ -4,8 +4,9 @@ plugins {
 }
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(21)
-    withSourcesJar()
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 version = project.mod_version
@@ -20,6 +21,11 @@ repositories {
         name = "Terraformers"
         url = "https://maven.terraformersmc.com/"
     }
+
+    maven {
+        name = "meteor-maven"
+        url = "https://maven.meteordev.org/releases"
+    }
 }
 
 dependencies {
@@ -30,6 +36,7 @@ dependencies {
 
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${project.jackson_version}"
+    implementation "meteordevelopment:orbit:0.2.3"
 }
 
 processResources {

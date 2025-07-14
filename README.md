@@ -37,10 +37,11 @@ Configuration is stored in `config/chatcontrol.json` and includes:
 
 ```json
 {
-  "hideChat": false,
-  "filteredMessages": [
-    "example",
-    "badword"
+  "hideChat" : false,
+  "suffix" : true,
+  "suffixText" : "| Chat Control",
+  "filteredMessages" : [
+    
   ]
 }
 ```
