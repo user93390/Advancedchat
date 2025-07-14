@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "dev.seasnail1.chatcontrol.mixin",
+  "package": "dev.seasnail1.advancedchat.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
   ],

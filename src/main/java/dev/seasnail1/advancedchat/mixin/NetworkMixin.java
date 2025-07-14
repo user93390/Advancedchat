@@ -1,9 +1,8 @@
-package dev.seasnail1.chatcontrol.mixin;
+package dev.seasnail1.advancedchat.mixin;
 
-import dev.seasnail1.chatcontrol.ChatControl;
-import dev.seasnail1.chatcontrol.events.MessageSendEvent;
+import dev.seasnail1.advancedchat.ChatControl;
+import dev.seasnail1.advancedchat.events.MessageSendEvent;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,12 +15,11 @@ public class NetworkMixin {
     private void onSendChatMessage(String message, CallbackInfo ci) {
         MessageSendEvent event = new MessageSendEvent(message);
 
-        if(event.modified) {
+        if (event.modified) {
             message = event.getMessage();
         }
 
         event = new MessageSendEvent(message);
-
         ChatControl.bus.post(event);
     }
 }

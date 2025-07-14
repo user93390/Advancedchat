@@ -1,8 +1,8 @@
-package dev.seasnail1.chatcontrol;
+package dev.seasnail1.advancedchat;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import dev.seasnail1.chatcontrol.config.ConfigScreen;
+import dev.seasnail1.advancedchat.config.ConfigScreen;
 import net.minecraft.text.Text;
 
 public class ModMenuIntegration implements ModMenuApi {
@@ -11,7 +11,7 @@ public class ModMenuIntegration implements ModMenuApi {
         return parent -> {
             try {
                 // Create a new ConfigScreen instance
-                return new ConfigScreen(Text.of("Chatcontrol  Menu"));
+                return new ConfigScreen(Text.of("Advanced chat"));
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

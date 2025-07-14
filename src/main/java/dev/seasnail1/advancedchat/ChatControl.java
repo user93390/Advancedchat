@@ -1,8 +1,11 @@
-package dev.seasnail1.chatcontrol;
+package dev.seasnail1.advancedchat;
 
-import dev.seasnail1.chatcontrol.config.Config;
-import dev.seasnail1.chatcontrol.events.MessageReceiveEvent;
-import dev.seasnail1.chatcontrol.events.MessageSendEvent;
+import com.deepl.api.DeepLClient;
+import com.deepl.api.DeepLException;
+import com.deepl.api.TextResult;
+import dev.seasnail1.advancedchat.config.Config;
+import dev.seasnail1.advancedchat.events.MessageReceiveEvent;
+import dev.seasnail1.advancedchat.events.MessageSendEvent;
 import meteordevelopment.orbit.EventBus;
 import meteordevelopment.orbit.EventHandler;
 import meteordevelopment.orbit.IEventBus;
@@ -16,10 +19,12 @@ import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
 public class ChatControl implements ModInitializer {
-    private static final Logger log = LoggerFactory.getLogger("chatControl");
-    public final String version = FabricLoader.getInstance().getModContainer("chat-control").get().getMetadata().getVersion().getFriendlyString();
+    private static final Logger log = LoggerFactory.getLogger("Advanced-chat");
+    public final String version = FabricLoader.getInstance().getModContainer("advanced-chat").get().getMetadata().getVersion().getFriendlyString();
     public static IEventBus bus;
     private static Config config;
+
+    private DeepLClient client;
 
     @Override
     public void onInitialize() {
@@ -27,8 +32,12 @@ public class ChatControl implements ModInitializer {
             bus = new EventBus();
             log.info("Loading ChatControl {}...", version);
             config = new Config();
-
             config.init();
+            bus.registerLambdaFactory("dev.seasnail1.advancedchat", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
+            bus.subscribe(this);
+            String authKey = config.getTranslateKey();
+            client = new DeepLClient(authKey);
+
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {
                     config.saveConfig();
@@ -36,9 +45,6 @@ public class ChatControl implements ModInitializer {
                     throw new RuntimeException(e);
                 }
             }));
-
-            bus.registerLambdaFactory("dev.seasnail1.chatcontrol", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
-            bus.subscribe(this);
         } catch (Exception e) {
             log.error("Failed to initilize: Full stack trace below...");
 
@@ -55,16 +61,22 @@ public class ChatControl implements ModInitializer {
     }
 
     @EventHandler
-    public void onMessageReceive(MessageReceiveEvent event) {
+    public void onMessageReceive(MessageReceiveEvent event) throws DeepLException, InterruptedException {
         String message = event.getMessage().getString();
 
-        if(getConfig().isFilteredMessages()) {
+        if (getConfig().isFilteredMessages()) {
             for (int i = 0; i < config.getBadWords().length; i++) {
                 if (message.contains(config.getBadWords()[i])) {
-                    event.cancel();
+                    event.setCancelled(true);
+                    System.out.println("Message blocked: " + message);
                     return;
                 }
             }
+        }
+
+        if (config.isTranslate()) {
+            TextResult result = client.translateText(message, null, config.getTranslation());
+            System.out.println(result.getText());
         }
     }
 

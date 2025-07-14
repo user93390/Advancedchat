@@ -1,4 +1,4 @@
-package dev.seasnail1.chatcontrol.events;
+package dev.seasnail1.advancedchat.events;
 
 public class MessageSendEvent {
     private String message;

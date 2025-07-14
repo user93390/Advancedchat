@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "chat-control",
+  "id": "advanced-chat",
   "version": "${version}",
-  "name": "Chat Control",
+  "name": "Advanced Chat",
   "description": "A Minecraft mod that allows more customization of the chat experience.",
   "authors": [
     "Samuel Willows"
   ],
 
   "contact": {
-    "issues": "github.com/user93390/chat-control/issues",
-    "source": "github.com/user93390/chat-control",
-    "homepage": "github.com/user93390/chat-control"
+    "issues": "github.com/user93390/Advancedchat/issues",
+    "source": "github.com/user93390/Advancedchat",
+    "homepage": "github.com/user93390/Advancedchat"
   },
 
   "license": "MIT",
@@ -19,10 +19,10 @@
   "environment": "client",
   "entrypoints": {
     "main": [
-      "dev.seasnail1.chatcontrol.ChatControl"
+      "dev.seasnail1.advancedchat.ChatControl"
     ],
     "modmenu": [
-      "dev.seasnail1.chatcontrol.ModMenuIntegration"
+      "dev.seasnail1.advancedchat.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -36,8 +36,8 @@
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.issues": "github.com/user93390/chat-control/issues",
-        "modmenu.source": "github.com/user93390/chat-control"
+        "modmenu.issues": "github.com/user93390/Advancedchat/issues",
+        "modmenu.source": "github.com/user93390/Advancedchat"
       }
     }
   }
