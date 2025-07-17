@@ -1,8 +1,5 @@
 package dev.seasnail1.advancedchat;
 
-import com.deepl.api.DeepLClient;
-import com.deepl.api.DeepLException;
-import com.deepl.api.TextResult;
 import dev.seasnail1.advancedchat.config.Config;
 import dev.seasnail1.advancedchat.events.MessageReceiveEvent;
 import dev.seasnail1.advancedchat.events.MessageSendEvent;
@@ -16,27 +13,33 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 
 public class ChatControl implements ModInitializer {
     private static final Logger log = LoggerFactory.getLogger("Advanced-chat");
-    public final String version = FabricLoader.getInstance().getModContainer("advanced-chat").get().getMetadata().getVersion().getFriendlyString();
     public static IEventBus bus;
     private static Config config;
+    public final String version = FabricLoader.getInstance().getModContainer("advanced-chat").get().getMetadata().getVersion().getFriendlyString();
 
-    private DeepLClient client;
+    public static Config getConfig() {
+        return config;
+    }
+
+    public static Logger getLogger() {
+        return log;
+    }
 
     @Override
     public void onInitialize() {
         try {
-            bus = new EventBus();
             log.info("Loading ChatControl {}...", version);
+            bus = new EventBus();
             config = new Config();
             config.init();
             bus.registerLambdaFactory("dev.seasnail1.advancedchat", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
             bus.subscribe(this);
-            String authKey = config.getTranslateKey();
-            client = new DeepLClient(authKey);
+
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {
@@ -61,22 +64,22 @@ public class ChatControl implements ModInitializer {
     }
 
     @EventHandler
-    public void onMessageReceive(MessageReceiveEvent event) throws DeepLException, InterruptedException {
+    public void onMessageReceive(MessageReceiveEvent event) throws MalformedURLException {
         String message = event.getMessage().getString();
 
-        if (getConfig().isFilteredMessages()) {
+        if (config.isFilteredMessages()) {
             for (int i = 0; i < config.getBadWords().length; i++) {
                 if (message.contains(config.getBadWords()[i])) {
-                    event.setCancelled(true);
                     System.out.println("Message blocked: " + message);
+
+                    event.setCancelled(true);
                     return;
                 }
             }
         }
 
         if (config.isTranslate()) {
-            TextResult result = client.translateText(message, null, config.getTranslation());
-            System.out.println(result.getText());
+            // TODO: Implement translation logic
         }
     }
 
@@ -87,13 +90,5 @@ public class ChatControl implements ModInitializer {
         if (getConfig().isSuffix()) {
             event.setMessage(message + " " + getConfig().getSuffixText());
         }
-    }
-
-    public static Config getConfig() {
-        return config;
-    }
-
-    public static Logger getLogger() {
-        return log;
     }
 }

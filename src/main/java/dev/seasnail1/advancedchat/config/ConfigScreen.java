@@ -31,8 +31,6 @@ public class ConfigScreen extends Screen {
         y += 24;
         createBoolOption("translate", cfg.isTranslate(), y);
         y += 24;
-        createTextOption("Translate Key", cfg.getTranslateKey(), y, cfg::setTranslateKey, false);
-        y += 24;
         createTextOption("Translation", cfg.getTranslation(), y, cfg::setTranslation, false);
         y += 24;
         createBoolOption("Filter Messages", cfg.isFilteredMessages(), y);

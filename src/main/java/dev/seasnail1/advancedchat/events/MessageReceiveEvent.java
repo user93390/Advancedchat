@@ -5,8 +5,8 @@ import net.minecraft.text.Text;
 
 public class MessageReceiveEvent implements ICancellable {
     private boolean cancelled = false;
-
-    private final Text message;
+    private boolean modified = false;
+    private Text message;
 
     public MessageReceiveEvent(Text message) {
         this.message = message;
@@ -24,5 +24,18 @@ public class MessageReceiveEvent implements ICancellable {
     @Override
     public boolean isCancelled() {
         return cancelled;
+    }
+
+    public void setMessage(Text message) {
+        this.message = Text.of(message);
+        setModified(true);
+    }
+
+    public boolean isModified() {
+        return modified;
+    }
+
+    public void setModified(boolean modified) {
+        this.modified = modified;
     }
 }

@@ -40,5 +40,8 @@
         "modmenu.source": "github.com/user93390/Advancedchat"
       }
     }
+  },
+  "breaks": {
+    "chatplus": "This mod is not compatible with Advanced Chat due to Mixin conflicts."
   }
 }

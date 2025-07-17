@@ -21,14 +21,12 @@ public class Config {
     public static boolean translate = false;
     public static String[] badWords = new String[]{};
     public static String suffixText = "";
-    public static String translateKey = "your-translate-key-here";
     public static String translation = "sp";
     public static int chatWidth = 300;
     public static int chatHeight = 150;
     public static float chatScale = 1;
 
     final Map<String, Object> defaultConfig = new HashMap<>();
-
     {
         defaultConfig.put("hideChat", false);
         defaultConfig.put("suffix", false);
@@ -39,7 +37,6 @@ public class Config {
         defaultConfig.put("chatHeight", 150);
         defaultConfig.put("chatScale", 1);
         defaultConfig.put("translate", false);
-        defaultConfig.put("translateKey", "your-translate-key-here");
         defaultConfig.put("translation", "sp");
     }
 
@@ -64,7 +61,6 @@ public class Config {
         suffix = getBooleanValue(map, "suffix", false);
         filterMessages = getBooleanValue(map, "FilterMessages", true);
         suffixText = getStringValue(map, "suffixText");
-        translateKey = getStringValue(map, "translateKey");
         chatWidth = getIntValue(map, "chatWidth", 300);
         chatHeight = getIntValue(map, "chatHeight", 150);
         chatScale = getIntValue(map, "chatScale", 1);
@@ -93,7 +89,6 @@ public class Config {
         configs.put("suffixText", suffixText);
         configs.put("hideChat", hideChat);
         configs.put("translate", translate);
-        configs.put("translateKey", translateKey);
         configs.put("translation", translation);
         configs.put("FilterMessages", filterMessages);
         configs.put("filteredMessages", List.of(badWords));
@@ -142,10 +137,6 @@ public class Config {
         return translate;
     }
 
-    public String getTranslateKey() {
-        return translateKey;
-    }
-
     public String getTranslation() {
         return translation;
     }
@@ -171,10 +162,6 @@ public class Config {
         badWords = value;
     }
 
-    public void setTranslateKey(String value) {
-        translateKey = value;
-    }
-
     public void setTranslation(String value) {
         translation = value;
     }
@@ -190,7 +177,6 @@ public class Config {
             case "chatheight" -> chatHeight = (int) value;
             case "chatscale" -> chatScale = (int) value;
             case "translate" -> translate = (boolean) value;
-            case "translatekey" -> translateKey = (String) value;
             case "translation" -> translation = (String) value;
             default -> ChatControl.getLogger().warn("Unknown config option: {}", option);
         }
