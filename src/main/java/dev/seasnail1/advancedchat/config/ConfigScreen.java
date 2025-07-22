@@ -40,7 +40,6 @@ public class ConfigScreen extends Screen {
         createTextOption("Suffix Text", cfg.getSuffixText(), y, cfg::setSuffixText, false);
         y += 24;
 
-
         // Integer options
         createIntegerOption("Chat Height", chatHeight, y, value -> {
             try {
