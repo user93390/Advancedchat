@@ -8,6 +8,8 @@ import meteordevelopment.orbit.EventHandler;
 import meteordevelopment.orbit.IEventBus;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,13 +35,12 @@ public class ChatControl implements ModInitializer {
     @Override
     public void onInitialize() {
         try {
-            log.info("Loading ChatControl {}...", version);
+            log.info("Loading AdvancedChat {}...", version);
             bus = new EventBus();
             config = new Config();
             config.init();
             bus.registerLambdaFactory("dev.seasnail1.advancedchat", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
             bus.subscribe(this);
-
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {
@@ -80,6 +81,8 @@ public class ChatControl implements ModInitializer {
 
         if (config.isTranslate()) {
             // TODO: Implement translation logic
+            getLogger().info("Translator is not impletmeted yet... Please wait for the next update.");
+            MinecraftClient.getInstance().player.sendMessage(Text.of("Translator is not implemented yet... Please wait for the next update."), false);
         }
     }
 
