@@ -37,14 +37,20 @@ Configuration is stored in `config/chatcontrol.json` and includes:
 
 ```json
 {
+  "chatWidth" : 300,
   "hideChat" : false,
-  "suffix" : true,
-  "suffixText" : "| Chat Control",
-  "filteredMessages" : [
-    
-  ]
+  "translation" : "sp",
+  "suffixText" : "",
+  "chatHeight" : 150,
+  "suffix" : false,
+  "FilterMessages" : true,
+  "filteredMessages" : [ ],
+  "chatScale" : 1.0,
+  "translate" : false
 }
 ```
+
+Please note that translation is not yet implemented, but structured ready for future use.
 
 ## License
 
