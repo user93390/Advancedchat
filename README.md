@@ -56,5 +56,4 @@ Please note that translation is not yet implemented, but structured ready for fu
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-
 More settings will be added soon!
