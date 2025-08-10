@@ -11,7 +11,7 @@ A Minecraft mod that allows more customization of the chat experience.
 ## Installation
 
 1. Install [Fabric Loader](https://fabricmc.net/use/) for Minecraft
-2. Download Chat Control from [GitHub Releases](https://github.com/user93390/chat-control/releases) or [CurseForge](https://www.curseforge.com/minecraft/mc-mods/chat-control)
+2. Download Chat Control from [GitHub Releases](https://github.com/user93390/Advancedchat/releases/)
 3. Place the downloaded JAR file in your Minecraft `mods` folder
 4. Launch Minecraft with Fabric
 
